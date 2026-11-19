@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Takwene.TrackManagement.Infrastructure.Persistence;
+
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Database connection string 'DefaultConnection' is missing.");
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString).UseSeeding((context, _) => DatabaseSeeder.Seed(context)));
 
 // Add services to the container.
 
