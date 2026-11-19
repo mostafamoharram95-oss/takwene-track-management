@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Takwene.TrackManagement.Api/Takwene.TrackManagement.Api.csproj" />
+    <Project Path="src/Takwene.TrackManagement.Application/Takwene.TrackManagement.Application.csproj" />
+    <Project Path="src/Takwene.TrackManagement.Domain/Takwene.TrackManagement.Domain.csproj" />
+    <Project Path="src/Takwene.TrackManagement.Infrastructure/Takwene.TrackManagement.Infrastructure.csproj" />
+  </Folder>
+</Solution>
