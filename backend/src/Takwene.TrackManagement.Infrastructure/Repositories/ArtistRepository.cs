@@ -20,6 +20,12 @@ public class ArtistRepository : IArtistRepository
         await _context.SaveChangesAsync(cancellationToken);
         return artist;
     }
+
+    public Task<bool> ExistsAsync(int id, CancellationToken cancellationToken = default)
+    {
+        return _context.Artists.AnyAsync(a => a.Id == id, cancellationToken);
+    }
+
     public async Task<List<Artist>> GetAllAsync(CancellationToken cancellationToken = default)
     {
         return await _context.Artists.AsNoTracking().ToListAsync(cancellationToken);

@@ -1,0 +1,44 @@
+
+<h2>Track Management</h2>
+<label for="statusFilter">Filter by status:</label>
+
+<select
+  id="statusFilter"
+  #statusFilter
+  (change)="onStatusChange(statusFilter.value)"
+>
+  <option value="">All statuses</option>
+  <option value="Draft">Draft</option>
+  <option value="Submitted">Submitted</option>
+  <option value="Distributed">Distributed</option>
+</select>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Artist</th>
+      <th>Genre</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    @if (tracks$ | async; as tracks) {
+      @for (track of tracks; track track.id) {
+        <tr>
+          <td>
+            <a [routerLink]="['/tracks', track.id]">
+              {{ track.title }}
+            </a>
+          </td>
+          <td>{{ track.artistName }}</td>
+          <td>{{ track.genre }}</td>
+          <td>{{ track.status }}</td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="4">No tracks found.</td>
+        </tr>
+      }
+    }
+  </tbody>
+</table>

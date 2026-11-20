@@ -1,0 +1,37 @@
+@if (track$ | async; as track) {
+  <h2>{{ track.title }}</h2>
+  <p><strong>Artist:</strong> {{ track.artistName }}</p>
+  <p><strong>Genre:</strong> {{ track.genre }}</p>
+  <p><strong>ISRC:</strong> {{ track.isrc }}</p>
+  <p><strong>Release Date:</strong> {{ track.releaseDate }}</p>
+  <p><strong>Status:</strong> {{ track.status }}</p>
+   
+    <h3>DSP Distributions</h3>
+
+    <table>
+    <thead>
+        <tr>
+        <th>DSP</th>
+        <th>Status</th>
+        <th>Submitted At</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (distribution of track.distributions; track distribution.dspId) {
+        <tr>
+            <td>{{ distribution.dspName }}</td>
+            <td>{{ distribution.status }}</td>
+            <td>{{ distribution.submittedAt | date:'mediumDate' }}</td>
+        </tr>
+        } @empty {
+        <tr>
+            <td colspan="3">Not distributed to any DSPs yet.</td>
+        </tr>
+        }
+    </tbody>
+    </table>
+
+} @else {
+  <p>Loading track...</p>
+}
+<a routerLink="/">← Back to tracks</a>
